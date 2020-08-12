@@ -70,10 +70,44 @@ const RootQuery = new GraphQLObjectType({
     rocket: {
       type: RocketType,
       args: {
-        id: { type: GraphQLInt }
+        id: { type: GraphQLString }
       },
       resolve(parent: any, args: any) {
         return axios.get(`https://api.spacexdata.com/v3/rockets/${args.id}`)
+          .then((res: { data: any; }) => res.data);
+      }
+    },
+    sites: {
+      type: new GraphQLList(SiteType),
+      resolve(parent: any, args: any) {
+        return axios.get('https://api.spacexdata.com/v3/launches')
+          .then((res: { data: any; }) =>  res.data);
+      }
+    },
+    site: {
+      type: SiteType,
+      args: {
+        id: { type: GraphQLInt }
+      },
+      resolve(parent: any, args: any) {
+        return axios.get(`https://api.spacexdata.com/v3/launches/${args.id}`)
+          .then((res: { data: any; }) => res.data);
+      }
+    },
+    fails: {
+      type: new GraphQLList(FailType),
+      resolve(parent: any, args: any) {
+        return axios.get('https://api.spacexdata.com/v3/launches')
+          .then((res: { data: any; }) =>  res.data);
+      }
+    },
+    fail: {
+      type: FailType,
+      args: {
+        time: { type: GraphQLInt }
+      },
+      resolve(parent: any, args: any) {
+        return axios.get(`https://api.spacexdata.com/v3/launches/${args.time}`)
           .then((res: { data: any; }) => res.data);
       }
     }
