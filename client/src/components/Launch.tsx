@@ -8,7 +8,7 @@ import classNames from 'classnames';
 type Props = {
   flight_number: any,
   someString: any
-}
+};
 
 const LAUNCH_QUERY = gql`
   query LaunchQuery($flight_number: Int!) {
@@ -20,7 +20,10 @@ const LAUNCH_QUERY = gql`
       launch_failure_details {
         time,
         reason
-      }
+      },
+      launch_site {
+        site_name
+      },
       launch_date_local,
       rocket {
         rocket_id,
@@ -51,8 +54,17 @@ export class Launch extends Component<Props & RouteComponentProps> {
                 flight_number,
                 launch_year,
                 launch_success,
+                launch_site: { site_name },
                 rocket: { rocket_id, rocket_name, rocket_type }
-              } = data.launch;  
+              } = data.launch;
+              
+              //const { launch_failure_details: { reason } } = data.launch;
+
+              {/*if (reason === null) {
+                console.log("no");
+              } else {
+                reason
+              }*/}
 
               return (
                 <div>
@@ -76,9 +88,10 @@ export class Launch extends Component<Props & RouteComponentProps> {
                         'text-danger': !launch_success
                       })}>{launch_success ? 'Yes' : 'No'}</span>
                     </li>
-                    {/*<li className="list-group-item">
-                      <b>Launch Failure Details:</b>
-                    </li>*/}
+                    <li className="list-group-item">
+                      <b>Launch Site: <span> {site_name} </span></b>
+                    </li> 
+                    
                   </ul>
                   <h4 className="h4 my-3"> Rocket Details </h4>
                   <ul className="list-group">
@@ -96,6 +109,6 @@ export class Launch extends Component<Props & RouteComponentProps> {
       </React.Fragment>
     )
   }
-}
+};
 
 export default Launch

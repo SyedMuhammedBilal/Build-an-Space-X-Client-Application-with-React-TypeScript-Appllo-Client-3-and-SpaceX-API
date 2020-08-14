@@ -1,0 +1,115 @@
+.header {
+    width: 100%;
+    position: absolute;
+}
+
+.header ul {
+    text-align: center;
+    color: white;
+}
+
+.header ul li {
+    list-style: none;
+    display: inline-block;
+    background-color: transparent;
+}
+
+.header ul li a{
+    display: block;
+    text-decoration: none;
+    text-transform: uppercase;
+    background-color: transparent;
+    color: #fff;
+    font-size: 15px;
+    letter-spacing: 5px;
+    font-weight: 600;
+    padding: 25px;
+}
+
+@media screen and (max-width: 678px){
+
+    .header ul li a{
+        font-size: 13px;
+        letter-spacing: 3px;
+    }
+}
+
+@media screen and (max-width: 375px){
+
+    .header ul li a{
+        font-size: 14px;
+        letter-spacing: -1px;
+        padding: 13px;
+        margin-left: -3vh !important;
+    }
+}
+
+@media screen and (max-width: 342px){
+
+    .header ul li a{
+        font-size: 14px;
+        letter-spacing: -1px;
+        padding: 13px;
+        margin-left: -4vh !important;
+    }
+}
+
+@media screen and (max-width: 414px){
+
+    .header ul li a{
+        font-size: 14px;
+        letter-spacing: -1px;
+        padding: 20px;
+        margin-left: -1vh;
+    }
+}
+
+@media screen and (max-width: 411px){
+
+    .header ul li a{
+        font-size: 14px;
+        letter-spacing: -1px;
+        padding: 20px;
+        margin-left: -2vh;
+    }
+}
+
+@media screen and (max-width: 450px){
+
+    .header ul li a{
+        font-size: 14px;
+        letter-spacing: -1px;
+        padding: 20px;
+        margin-left: -2vh;
+    }
+}
+
+@media screen and (max-width: 578px){
+
+    .header ul li a{
+        font-size: 14px;
+        letter-spacing: -1px;
+        padding: 20px;
+        margin-left: -2vh;
+    }
+}
+
+@media screen and (max-width: 320px){
+
+    .header ul li a{
+        font-size: 14px;
+        letter-spacing: -1px;
+        padding: 14px;
+        margin-left: -5vh !important;
+    }
+}
+
+@media screen and (max-width: 360px){
+
+    .header ul li a{
+        font-size: 14px;
+        letter-spacing: -1px;
+        padding: 18px;
+        margin-left: -3vh;
+    }
+}
