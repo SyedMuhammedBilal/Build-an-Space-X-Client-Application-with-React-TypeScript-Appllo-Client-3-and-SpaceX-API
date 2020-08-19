@@ -4,29 +4,26 @@ import { Query } from 'react-apollo';
 import { Link } from 'react-router-dom';
 import { RouteComponentProps } from 'react-router';
 import classNames from 'classnames';
+import Launches from './Launches';
 
 type Props = {
-  flight_number: any,
+  id: string,
   someString: any
 };
 
 const LAUNCH_QUERY = gql`
-  query LaunchQuery($flight_number: Int!) {
-    launch(flight_number: $flight_number) {
+  query LaunchQuery($id: String) {
+    launch(id: $id) {
       flight_number,
       mission_name,
       launch_year,
       launch_success,
-      launch_failure_details {
-        time,
-        reason
-      },
       launch_site {
         site_name
       },
       launch_date_local,
       rocket {
-        rocket_id,
+          rocket_id,
         rocket_name,
         rocket_type
       }
@@ -38,12 +35,12 @@ export class Launch extends Component<Props & RouteComponentProps> {
 
   render() {
     
-    let { flight_number }: any = (this.props.match.params as any);
-    flight_number = parseInt(flight_number);
+    let { id }: any = (this.props.match.params as any);
+    id = String(id)
     
     return (
       <React.Fragment>
-        <Query query={LAUNCH_QUERY} variables={{flight_number}}>
+        <Query query={LAUNCH_QUERY} variables={{ id }}>
           {
             ({ loading, error, data }: boolean | string | any) => {
               if (loading) return <h4>Loading...</h4>
@@ -57,14 +54,8 @@ export class Launch extends Component<Props & RouteComponentProps> {
                 launch_site: { site_name },
                 rocket: { rocket_id, rocket_name, rocket_type }
               } = data.launch;
-              
-              //const { launch_failure_details: { reason } } = data.launch;
 
-              {/*if (reason === null) {
-                console.log("no");
-              } else {
-                reason
-              }*/}
+              //const { launch_failure_details: { reason } } = data.launch;
 
               return (
                 <div>
@@ -90,8 +81,7 @@ export class Launch extends Component<Props & RouteComponentProps> {
                     </li>
                     <li className="list-group-item">
                       <b>Launch Site: <span> {site_name} </span></b>
-                    </li> 
-                    
+                    </li>  
                   </ul>
                   <h4 className="h4 my-3"> Rocket Details </h4>
                   <ul className="list-group">
@@ -100,7 +90,7 @@ export class Launch extends Component<Props & RouteComponentProps> {
                     <li className="list-group-item"> Rocket Type: {rocket_type} </li>
                   </ul>
                   <hr />
-                  <Link className="btn btn-secondary" to="/">Back</Link>
+                    <Link className="btn btn-secondary" to="/">Back</Link>
                 </div>
               )
             }

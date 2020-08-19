@@ -7,7 +7,7 @@ type Props = {
   launch: any
 }
 
-const LaunchItem: React.FC<Props> = ({ launch: { flight_number, mission_name, launch_date_local, launch_success, launch_site } }) => {
+const LaunchItem: React.FC<Props> = ({ launch: { flight_number, mission_name, launch_date_local, launch_success, launch_site, static_fire_date_unix, launch_date_unix, ships } }) => {
   //console.log(launch);
   return (
     <div className="card card-body mb-3">
@@ -23,6 +23,9 @@ const LaunchItem: React.FC<Props> = ({ launch: { flight_number, mission_name, la
           </h4>
           <p> Date: <Moment format="YYYY-MM-DD HH:mm">{launch_date_local}</Moment> </p>
           <p> Launch Site: {launch_site.site_name} </p>
+          <p> Launch Date Unix: {launch_date_unix} </p>
+          <p> Fire Date Unix: {static_fire_date_unix} </p>
+         
         </div>
         <div className="col-md-3">
             <Link to={`/launch/${flight_number}`} className="btn btn-secondary"> Launch Details </Link>

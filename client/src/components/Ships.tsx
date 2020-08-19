@@ -2,33 +2,28 @@ import React, { Component } from 'react'
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 
-import LaunchItem from './LaunchItem';
-import MissionKey from './MissionKey';
+import ShipItem from './ShipItem';
 
-const LAUNCHES_QUERY = gql`
-  query LaunchesQuery {
-    launches {
-      flight_number,
-      mission_name,
-      launch_year,
-      launch_date_local,
-      launch_site {
-        site_name
-      }
-      launch_success
+const SHIPS_QUERY = gql`
+  query ShipsQuery {
+    ships {
+      ship_id,
+      ship_name,
+      weight_lbs,
+      weight_kg,
+      home_port
     }
   }
 `;
 
 
-export default class Launches extends Component {
+export default class Ships extends Component {
   render() {
     return (
       <React.Fragment>
         <div className="container">
-          <h1 className="display-4 my-3"> Launches </h1>
-          <MissionKey />
-          <Query query={LAUNCHES_QUERY}>
+          <h1 className="display-4 my-3"> Ships </h1>
+          <Query query={SHIPS_QUERY}>
             {
               ({ loading, error, data }: boolean | string | any) => {
                 if (loading) return <h4>Loading...</h4>
@@ -38,8 +33,8 @@ export default class Launches extends Component {
                 return (
                   <React.Fragment>
                     {
-                      data.launches.map((launch: { flight_number: string | number | null | undefined; }) => (
-                        <LaunchItem key={launch.flight_number} launch={launch} />
+                      data.ships.map((ship: { ship_id: string | number | null | undefined; }) => (
+                        <ShipItem key={ship.ship_id} ship={ship} />
                       ))
                     }
                   </React.Fragment>

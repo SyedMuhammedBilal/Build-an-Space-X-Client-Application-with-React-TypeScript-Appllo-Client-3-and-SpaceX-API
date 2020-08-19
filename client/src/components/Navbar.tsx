@@ -5,10 +5,10 @@ export default function Navbar() {
   return (
     <div className="header">
       <ul>
-        <li><a>Mission</a></li>
-        <li><a>Launches</a></li>
-        <li><a>Rockets</a></li>
-        <li><a>Contact</a></li>
+        <li><a href="/dragons">Dragons</a></li>
+        <li><a href="/">Launches</a></li>
+        <li><a href="/ships">Ships</a></li>
+        <li><a href="/">Contact</a></li>
       </ul>
     </div>
   );

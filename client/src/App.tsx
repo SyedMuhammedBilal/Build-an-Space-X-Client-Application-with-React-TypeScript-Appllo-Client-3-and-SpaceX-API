@@ -3,13 +3,14 @@ import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import logo from './logo.png';
 import Launches from './components/Launches';
 import Launch from './components/Launch';
 import Header from './components/Header';
+import Ships from './components/Ships';
+import Dragons from './components/Dragons';
 
 const client = new ApolloClient({
-  uri: "http://localhost:5000/graphql"
+  uri: "http://spacexdata.herokuapp.com/graphql"
 });
 
 function App() {
@@ -24,7 +25,9 @@ function App() {
             style={{ width: 300, display: "block", margin: "auto" }}
           />*/}
           <Route exact path="/" component={Launches} />
-          <Route exact path="/launch/:flight_number" component={Launch} />
+          <Route exact path="/launch/:id" component={Launch} />
+          <Route exact path="/ships" component={Ships} />
+          <Route exact path="/dragons" component={Dragons} />
         </div>
       </Router>
     </ApolloProvider>
