@@ -1,12 +1,12 @@
 {
-  "name": "spaceX",
+  "name": "Node",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "ts-node-dev --respawn src/server.ts",
     "dev": "nodemon --exec ts-node src/server.ts",
-    "client": "npm start --prefix ./client",
+    "client": "npm start --prefix ../client",
     "Dev": "concurrently \"npm run dev\" \"npm run client\"",
     "build": "tsc"
   },
@@ -14,7 +14,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/node": "^14.0.27",
+    "@types/node": "^14.6.0",
     "nodemon": "^2.0.4",
     "ts-node": "^8.10.2",
     "ts-node-dev": "^1.0.0-pre.56",
@@ -35,6 +35,11 @@
     "express": "^4.17.1",
     "express-graphql": "^0.11.0",
     "graphql": "^15.3.0",
-    "lodash": "^4.17.19"
+    "lodash": "^4.17.19",
+    "netlify-lambda": "^2.0.1",
+    "serverless-http": "^2.5.0"
+  },
+  "engines": {
+    "node": "10.x"
   }
 }
